@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayi Alım Şartları</title>
+    <style>
+
+	 .title {
+    text-align: center; /* Ortalar */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    position: absolute; /* Üste sabitlemek için */
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Tam ortalamak için */
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+  	.logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 300px; /* Logo genişliği */
+            height: auto;  /* Orantılı boyut */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+  flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+  padding-top: 80px; 
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            position: relative;
+            width: 250px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .content {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ada68f;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .dropdown, .input-box, .calculate-button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+ <img src="asc.png" alt="Logo" class="logo">
+<h2 class="title">Maliyet Hesaplama Programı</h2>
+    <div class="container">
+         <div class="card" onclick="showContent(this)">
+            <h3>GAMAK MOTOR</h3>
+	    <img src="gamak.jpg" alt="GAMAK MOTOR" width="200" height="200">
+            <div class="content">
+                <button class="close-btn" onclick="closeContent(event, this)">×</button>
+                <p>Genel 27 iskonto</p>
+                <p>Peşin --> +7,5</p>
+                <select class="dropdown">
+		    <option value="0.6*0.925">PEŞİN ALIŞ</option>
+                    <option value="0.65">VADELİ</option>
+                </select>
+                <input type="number" class="input-box" placeholder="Liste Fiyatı">
+                <button class="calculate-button" onclick="calculatePrice(this)">Hesapla</button>
+                <p class="result"></p>
+            </div>
+        </div>
+
+
+      <div class="card" onclick="showContent(this)">
+            <h3>ELK MOTOR</h3>
+	    <img src="elk.jpg" alt="GAMAK MOTOR" width="200" height="200">
+            <div class="content">
+                <button class="close-btn" onclick="closeContent(event, this)">×</button>
+                <p>MERKEZ MOTOR 44 İSK</p>
+                <p>ŞALTER MOTOR 43 İSK</p>
+                <select class="dropdown">
+		    <option value="0.56">MERKEZ MOTOR</option>
+                    <option value="0.57">ŞALTER</option>
+                </select>
+                <input type="number" class="input-box" placeholder="Liste Fiyatı">
+                <button class="calculate-button" onclick="calculatePrice(this)">Hesapla</button>
+                <p class="result"></p>
+            </div>
+        </div>
+
+
+         <div class="card" onclick="showContent(this)">
+            <h3>OMEGA MOTOR</h3>
+	    <img src="omega.png" alt="GAMAK MOTOR" width="200" height="200">
+            <div class="content">
+                <button class="close-btn" onclick="closeContent(event, this)">×</button>
+                <p>Genel 35 iskonto</p>
+		<p>OEM  40 İskonto</p>
+		<p>120 Gün Vade</p>
+                <p>Peşin --> +7,5</p>
+                <select class="dropdown">
+		    <option value="0.6*0.925">PEŞİN ALIŞ</option>
+                    <option value="0.65">BAYİ ALIŞ</option>
+                    <option value="0.6">OEM ALIŞ</option> 
+                </select>
+                <input type="number" class="input-box" placeholder="Liste Fiyatı">
+                <button class="calculate-button" onclick="calculatePrice(this)">Hesapla</button>
+                <p class="result"></p>
+            </div>
+        </div>
+        <div class="card" onclick="showContent(this)">
+            <h3>Yılmaz Redüktör</h3>
+	    <img src="yilmaz.png" alt="GAMAK MOTOR" width="200" height="200">
+            <div class="content">
+                <button class="close-btn" onclick="closeContent(event, this)">×</button>
+                <p>Genel 25 iskonto</p>
+                <p>Peşin --> +13</p>
+                <p>30 Gün --> +10</p>
+                <p>60 Gün --> +7</p>
+                <p>90 Gün --> +4</p>
+                <select class="dropdown">
+                    <option value="0.75*0.87">Peşin</option>
+                    <option value="0.75*0.9">30 Gün Vadeli</option>
+                    <option value="0.75*0.93">60 Gün Vadeli</option>
+                    <option value="0.75*0.96">90 Gün Vadeli</option>
+                </select>
+                <input type="number" class="input-box" placeholder="Liste Fiyatı">
+                <button class="calculate-button" onclick="calculatePrice(this)">Hesapla</button>
+                <p class="result"></p>
+            </div>
+        </div>
+    </div>
+ <!-- JavaScript Kodunu Buraya Ekleyin -->
+<script>
+
+     function calculatePrice(button) {
+        let card = button.closest(".card"); // En yakın card elementini al
+        let price = card.querySelector(".input-box").value;  // Fiyatı al
+        let selectedOption = card.querySelector(".dropdown").value;  // Seçilen indirim oranını al
+
+        // Seçilen option'daki değeri işle
+        let result = price * eval(selectedOption);  // eval() ile çarpma işlemini hesapla
+
+        // Sonucu ekrana yazdır
+        card.querySelector(".result").textContent = "Maliyet: " + result.toFixed(2) +" TL";
+    }
+
+
+function showContent(selectedCard) {
+    let allCards = document.querySelectorAll(".card");
+    let content = selectedCard.querySelector(".content");
+
+    // Eğer zaten açıksa, hiçbir şey yapma
+    if (content.style.display === "block") {
+        return;
+    }
+
+    // Önce tüm CardView'leri kapat
+    allCards.forEach(card => {
+        let cardContent = card.querySelector(".content");
+        if (cardContent !== content) {
+            cardContent.style.display = "none";
+            card.style.height = "250px"; // Diğer kartların boyunu ilk haline getir
+        }
+    });
+
+    // Seçili olanı aç
+    content.style.display = "block";
+
+    // Kartın boyutunu içeriğe göre büyüt
+    let contentHeight = content.scrollHeight;
+    selectedCard.style.height = (350 + contentHeight) + "px";
+}
+
+function closeContent(event, button) {
+    event.stopPropagation();
+    let content = button.parentElement;
+    let card = content.parentElement;
+    content.style.display = "none";
+    card.style.height = "250px"; // Kartın boyutunu ilk haline getir
+}
+
+
+</script>
+</body>
+</html>
